@@ -63,7 +63,7 @@ const outPutResult = (dbObject) => {
 };
 app.get("/todos/", async (request,response) => {
     let data = null;
-    let getTodoQuery = "";
+    let getTodosQuery = "";
     const { search_q = "", priority, status, category } = request.query;
     /*console.log(hasPriorityAndStatusProperties(request.query));
     console.log(hasCategoryAndStatus(request.query));
@@ -82,7 +82,7 @@ app.get("/todos/", async (request,response) => {
                     status === "TO DO" ||
                     status === "IN PROGRESS" ||
                     status === "DONE"
-){
+) {
     getTodosQuery = `SELECT * FROM todo WHERE status = '${status}' AND priority = '${priority}';`;
     data = await database.all(getTodosQuery);
     response.send(data.map((eachItem)=> outPutResult(eachItem)));
@@ -292,7 +292,7 @@ case hasCategoryAndStatus(request.query):
                 break;
                 //update priority
                 case requestBody.priority !== undefined:
-                    if (priority === "HIGH" || priority === "LOW" |\ priority === "MEDIUM") {
+                    if (priority === "HIGH" || priority === "LOW" || priority === "MEDIUM") {
                         updateTodoQuery = `
                         UPDATE todo SET todo='${todo}', priority='${priority}', status='${status}', category='${category}',
                         due_date='${dueDate}' WHERE id = ${todoId};`;
